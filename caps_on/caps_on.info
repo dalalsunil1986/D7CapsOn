@@ -1,0 +1,6 @@
+name = Caps On
+description = Checks either caps is On or not while entering node title.
+core =7.x
+package = Other
+
+configure = admin/config/user-interface/caps-on

@@ -1,0 +1,50 @@
+<?php
+
+/**
+ * @file
+ *
+ * Creates better login pages
+ */
+
+/**
+ * Implementation of hook_menu
+ */
+function caps_on_menu() {
+    $items['admin/config/user-interface/caps-on'] = array(
+        'title' => t('Caps On'),
+        'description' => t('Configure improvements to the node title/ body alert page.'),
+        'file' => 'caps_on.admin.inc',
+        'page callback' => 'drupal_get_form',
+        'page arguments' => array('caps_on_admin_form'),
+        'access arguments' => array('administer caps on'),
+    );
+    return $items;
+}
+
+/**
+ * Implementation of hook_permission
+ */
+function caps_on_permission(){
+    return array(
+        'administer caps on' => array(
+            'title' => t('Administer caps on'),
+            'description' => t('Perform administration tasks for the Caps On module.'),
+        ),
+    );
+}
+
+/**
+ * Implementation of hook_form_alter().
+ *
+ */
+function caps_on_form_alter(&$form, &$form_state, $form_id) {
+
+    if ($form_id == 'article_node_form'|| $form_id == 'page_node_form') {
+        $path = drupal_get_path('module', 'caps_on');
+        $form['#attached']['js'][] = $path . '/js/caps-on.js';
+        if (variable_get('caps_on_css', 1)){
+            $form['#attached']['css'][] = $path .'/css/caps-on.css';
+        }
+        drupal_add_js(array('caps_on' => array('title_helpmsg' => t(variable_get('caps_on_capslock_msg', 'Caps Lock On')))), array('type' => 'setting'));
+    }
+}

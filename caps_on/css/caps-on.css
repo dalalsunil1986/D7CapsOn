@@ -1,0 +1,24 @@
+#capslockdiv{
+  height:1em;
+}
+
+#capslockdiv P{
+  color:#c61414;
+  margin:0;
+  background:url("warning.png") left center no-repeat;
+  background-size: 1em 1em;
+  text-indent:1.25em;
+  font-size:.75em;
+  margin-top:.5em;
+  margin-left:1.5em;  
+}
+
+#edit-title .messages {
+  margin:0 0 1em 0;
+}
+
+#edit-title {
+  background:url("warning.png") 5px 50% / 1em 1em no-repeat #FFFFFF;
+  border:1px solid #AAAAAA;
+  background-position: right;
+}
